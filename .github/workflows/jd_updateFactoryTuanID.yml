@@ -6,8 +6,8 @@ name: jd_updateFactoryTuanID
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16-24/3 * * *'
-    - cron: '0 0-15/2 * * *'
+    - cron: '0 16,19,22 * * *'
+    - cron: '0 0,2,4,6,8,10,12,14 * * *'
   #watch:
   #  types: started
   repository_dispatch:
