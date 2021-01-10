@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jd_updateSupermarketTeam
+name: 更新赚京豆
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 0,1,2 * * *'
-  # watch:
-    # types: started
+    - cron: '*/12 16,17 * * *'
+  watch:
+    types: started
   repository_dispatch:
-    types: jd_updateSupermarketTeam
+    types: jd_zzUpdate
 jobs:
   build:
     # env:
@@ -26,9 +26,9 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【更新京小超PK信息】'
+      - name: '运行 【更新赚京豆】'
         run: |
-          node jd_updateSupermarketTeam.js
+          node jd_zzUpdate.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
@@ -47,7 +47,7 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
           branch: master
       # - name: Purge CDN Cache
-        # run: curl https://purge.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateTeam.json
+        # run: curl https://purge.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_zz.json
       # 我自己同步到gitee使用，其他人可忽略
       # - name: sync github -> gitee
         # uses: Yikun/hub-mirror-action@master
