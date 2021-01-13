@@ -7,7 +7,7 @@ const jdCookieNode = require('./jdCookie.js');
 Object.keys(jdCookieNode).forEach((item) => {
   cookiesArr.push(jdCookieNode[item])
 })
-cookiesArr = cookiesArr.splice(0, 10);
+// cookiesArr = cookiesArr.splice(0, 10);
 if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
 
 const JD_API_HOST = 'https://api.m.jd.com/api';
@@ -97,15 +97,19 @@ async function getTeamId() {
       const DateNowH = new Date(DateNow).getHours();
       console.log(`现在北京时间：${DateNowH}点，第${$.index}个京东账号`);
       console.log(`暂未加入战队,现在等待120秒后开始创建PK战队`);
-      await $.wait(1000 * 60 * 4);
       await smtg_createPkTeam();
       await getTeamId();
+      await $.wait(1000 * 60 * 4);
     } else if (joinStatus === 1) {
       if (teamId) {
         console.log(`账号${$.index} ${$.UserName}--已加入战队 [${currentUserPkInfo.teamName}]/[${teamId}]`);
 
         console.log(`\n我方战队战队 [${currentUserPkInfo.teamName}]/【${currentUserPkInfo.teamCount}】`);
-        console.log(`对方战队战队 [${pkUserPkInfo.teamName}]/【${pkUserPkInfo.teamCount}】\n`);
+        if (pkUserPkInfo.teamId) {
+          console.log(`对方战队战队 [${pkUserPkInfo.teamName}]/【${pkUserPkInfo.teamCount}】\n`);
+        } else {
+          console.log(`对方战队战队 暂未匹配到对手\n`);
+        }
         $.teamIdArr.push({teamId, inviteCode})
       }
     }
