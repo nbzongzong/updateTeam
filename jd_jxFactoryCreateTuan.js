@@ -7,13 +7,13 @@ const JD_API_HOST = 'https://m.jingxi.com';
 const fs = require('fs');
 const notify = $.isNode() ? require('./sendNotify') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
-const tuanActiveId = `t2cdKwg2QPBzAqd5KMCNHg==`;
+const tuanActiveId = `TvjO5k4gaVqVHMRJIogd_g==`;
 let cookiesArr = [], cookie = '', message = '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 Object.keys(jdCookieNode).forEach((item) => {
   cookiesArr.push(jdCookieNode[item])
 })
-cookiesArr = cookiesArr.splice(0, 10);
+//cookiesArr = cookiesArr.splice(0, 10);
 if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
 !(async () => {
   if (!cookiesArr[0]) {
