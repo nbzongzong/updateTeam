@@ -1,7 +1,7 @@
 /*
 京东京喜工厂自动开团
  */
-
+const exec = require('child_process').execSync
 const $ = new Env('京东京喜工厂自动开团');
 const JD_API_HOST = 'https://m.jingxi.com';
 const fs = require('fs');
